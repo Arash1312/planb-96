@@ -1,59 +1,39 @@
 # NovaHash
-
 NovaHash is a lightweight Python tool that generates SHA256 hashes for files.
-
 ## Features
-
 - Fast SHA256 hashing
 - Simple command line interface
 - Lightweight with no external dependencies
 - Cross platform support
-
 ## Usage
-
 ```bash
 python novahash.py example.txt
 ```
-
 Example output:
-
 ```
 SHA256:
 9f86d081884c7d659a2feaa0c55ad015...
 ```
-
 ## License
-
 MIT License
 import hashlib
 import sys
 from pathlib import Path
-
-
 def sha256_file(file_path):
     sha = hashlib.sha256()
-
     with open(file_path, "rb") as f:
         while chunk := f.read(8192):
             sha.update(chunk)
-
     return sha.hexdigest()
-
-
 def main():
     if len(sys.argv) != 2:
         print("Usage: python novahash.py <file>")
         return
-
     file_path = Path(sys.argv[1])
-
     if not file_path.exists():
         print("File not found.")
         return
-
     print("SHA256:")
     print(sha256_file(file_path))
-
-
 if __name__ == "__main__":
     main()
