@@ -9,6 +9,10 @@ NovaHash is a lightweight Python tool that generates SHA256 hashes for files.
 ```bash
 python novahash.py example.txt
 ```
+import hashlib
+import sys
+from pathlib import Path
+def sha256_file(file_path):
 Example output:
 ```
 SHA256:
@@ -16,10 +20,7 @@ SHA256:
 ```
 ## License
 MIT License
-import hashlib
-import sys
-from pathlib import Path
-def sha256_file(file_path):
+
     sha = hashlib.sha256()
     with open(file_path, "rb") as f:
         while chunk := f.read(8192):
